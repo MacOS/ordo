@@ -301,7 +301,7 @@ define([
 
             /* Admonition */
             var adm = $('<button />')
-                .addClass('btn btn-sm btn-secondary')
+                .addClass('btn btn-sm btn-secondary ordo-admonition')
                 .attr('data-toggle', 'button')
                 .attr('aria-pressed', false)
                 .text('Make admonition');
@@ -322,9 +322,11 @@ define([
                 if (cell.metadata.ordo.admonition === undefined) {
                     cell.metadata.ordo.admonition = true;
                     cell.element.addClass('ordo-admonition-on');
+                    cell.element.find('button.ordo-admonition').text('Delete admonition');
                 } else {
                     delete cell.metadata.ordo.admonition;
                     cell.element.removeClass('ordo-admonition-on');
+                    cell.element.find('button.ordo-admonition').text('Make admonition');
                 }
 
                 toggleOpenButton(cell);

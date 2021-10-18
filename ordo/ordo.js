@@ -272,8 +272,12 @@ define([
             if (cell.cell_type === 'code') {
                 var editSolBtn = $('<button />')
                     .addClass('btn btn-sm btn-secondary')
-                    .text('Edit solutions')
+                    .text('Add solution')
                     .click((evt) => onEditSol(cell));
+
+                if (cell.metadata.ordo_solution !== undefined) {
+                    editSolBtn.text('Edit solution');
+                }
                 
                 var editSuccBtn = $('<button />')
                     .addClass('btn btn-sm btn-secondary')
@@ -857,6 +861,13 @@ define([
                         cell.metadata.ordo_solution = sol;
                     }
                 },
+                'Remove Solution': {
+                    'id': 'remove-solution-btn',
+                    'class': 'btn-danger',
+                    'click': function() {
+                        delete cell.metadata.ordo_solution;
+                    }
+                }
             },
             'keyboard_manager': Jupyter.notebook.keyboard_manager,
             'notebook': Jupyter.notebook
